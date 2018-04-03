@@ -9,15 +9,16 @@ __maintainer__ = "pimylifeup.com"
 
 GPIO.setmode(GPIO.BOARD)
 
-#define the pin that goes to the circuit
+#define the pin that goes to the photo sensor circuit we are using pin 7
 pin_to_circuit = 7
+#define the pin that goes to the led circuit we are using pin 16
 pin_to_led = 16
 
 def rc_time (pin_to_circuit):
     count = 0
   
     #Output on the pin for 
-    GPIO.setup(pin_to_circuit, GPIO.OUT)
+    GPIO.setup(pin_to_circuit, GPIO.OUT) 
     GPIO.output(pin_to_circuit, GPIO.LOW)
     time.sleep(0.1)
 
@@ -30,6 +31,7 @@ def rc_time (pin_to_circuit):
 
     return count
 
+#this turns on / off the LED
 def ToggleLed (pin_to_led,toggle):
 
     GPIO.setup(pin_to_led,GPIO.OUT)
@@ -41,7 +43,7 @@ def ToggleLed (pin_to_led,toggle):
       print("LED off")
       GPIO.output(pin_to_led,GPIO.LOW)
 
-#Catch when script is interupted, cleanup correctly
+#Catch when script is interrupted, clean up correctly
 try:
     # Main loop
     print('Starting')
@@ -50,6 +52,7 @@ try:
     while True:
         rcTime=rc_time(pin_to_circuit)
         print('Time = {}'.format(rcTime))
+		#if the time it takes for the photo sensor to charge the pin is greater than the identified time turn on the LED or else turn it off.
         if rcTime > 2000:
             ToggleLed(pin_to_led,True)
         else:
