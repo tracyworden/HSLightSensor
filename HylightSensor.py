@@ -3,7 +3,7 @@
 import RPi.GPIO as GPIO
 import time
 
-__author__ = 'Tracy adapted from Gus (Adapted from Adafruit)'
+__author__ = 'Gus (Adapted from Adafruit)'
 __license__ = "GPL"
 __maintainer__ = "pimylifeup.com"
 
@@ -13,8 +13,6 @@ GPIO.setmode(GPIO.BOARD)
 pin_to_circuit = 7
 #define the pin that goes to the led circuit we are using pin 16
 pin_to_led = 16
-#Change this value to change the when the LED light comes on and goes off 
-LedTime = 200
 
 def rc_time (pin_to_circuit):
     count = 0
@@ -54,7 +52,8 @@ try:
     while True:
         rcTime=rc_time(pin_to_circuit)
         print('Time = {}'.format(rcTime))
-        if rcTime > LEDTime:
+		#if the time it takes for the photo sensor to charge the pin is greater than the identified time turn on the LED or else turn it off.
+        if rcTime > 2000:
             ToggleLed(pin_to_led,True)
         else:
             ToggleLed(pin_to_led,False)
