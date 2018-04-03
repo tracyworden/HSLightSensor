@@ -54,7 +54,7 @@ try:
     while True:
         rcTime=rc_time(pin_to_circuit)
         print('Time = {}'.format(rcTime))
-        if rcTime > LEDTime:
+        if rcTime > LedTime:
             ToggleLed(pin_to_led,True)
         else:
             ToggleLed(pin_to_led,False)
