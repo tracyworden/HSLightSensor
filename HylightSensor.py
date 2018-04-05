@@ -9,12 +9,15 @@ __maintainer__ = "pimylifeup.com"
 
 GPIO.setmode(GPIO.BOARD)
 
+#Change this value to change the when the LED light comes on and goes off 
+LedTime = 200
+
+
 #define the pin that goes to the photo sensor circuit we are using pin 7
 pin_to_circuit = 7
 #define the pin that goes to the led circuit we are using pin 16
 pin_to_led = 16
-#Change this value to change the when the LED light comes on and goes off 
-LedTime = 200
+
 
 def rc_time (pin_to_circuit):
     count = 0
